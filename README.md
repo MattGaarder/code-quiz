@@ -19,18 +19,16 @@ var startButton = document.querySelector(".start");
 
 startButton.addEventListener("click", startGame);
 
-// The startGame function will change class attributes in our code so that #start-screen div's class will change from .start to .hide
-// Instead of parsing a startGame function like above, alternatively I could use a 
+// The startGame function will change the class attribute in our code so that #start-screen div's class will change from .start to .hide
+// Instead of parsing a startGame function like above, alternatively I could use an anonymous function that will do what is needed
 
+startButton.addEventListener("click", function(event) {
+  var toggle = "start";
 
+  if(toggle === "start"){
+    var toggle = element.getAttribute(".start");
 
-container.addEventListener("click", function(event) {
-  var element = event.target;
-
-  if(element.matches(".box")){
-    var state = element.getAttribute("data-state");
-
-    if(state === "hidden") {
+    if(state === ".start") {
       element.dataset.state = "number";
       element.textContent = element.dataset.number;
     } else {
