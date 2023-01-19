@@ -63,7 +63,7 @@ function startTimer() {
     timeLeft --; 
     } else if(timeLeft === 1){
     timerEl.textContent = timeLeft + " second remaining";
-    timeLeft --;
+    // timeLeft --;
     } else {
     timerEl.textContent = '';
     clearInterval(timeInterval);
@@ -92,16 +92,24 @@ document.querySelector("#choices").addEventListener("click", function(event) {
     if (event.target.tagName === "li") {
         var selectedChoice = event.target;
         var correctAnswer = myQuestions[currentQuestion - 1].correctAnswer;
-        if (selectedChoice.textContent === correctAnswer) {
-            score++;
+        if (selectedChoice.textContent != correctAnswer) {
+            timeLeft -= 10;
         }
         // other code to move on to the next question or end the game
     }
-    console.log(score)
+    clearChoices();
     displayQuestion();
 });
 
+function clearChoices() {
+    var answerUl = document.querySelector("ol");
+    var choices = document.querySelectorAll("#choices li");
+    for (var i = 0; i < choices.length; i++) {
+        choices[i].remove();
+        answerUl.remove();
 
+    }
+}
 
 
 // if (currentQuestion < myQuestions.length - 1) {
