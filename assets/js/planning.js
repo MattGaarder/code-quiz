@@ -34,7 +34,7 @@ var myQuestions = [{
 
 // Define our start button in our javascript in order to give it functionality
 
-var startButton = document.querySelector(".start");
+var startButton = document.querySelector("#start");
 
 // Attach event listener to start button to call startGame function on click
 
@@ -58,6 +58,7 @@ startButton.addEventListener("click", function(event) {
 });
 
 // The startTimer function will look something like the following:
+// TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
 
 function startTimer() {
     var timerEl = document.getElementById("time");
@@ -188,3 +189,21 @@ carousel.addEventListener("click", function(){
 var articlesDiv = document.getElementById('articles');
 
 articlesDiv.children[0].children[1].style.fontSize = "50px";
+
+
+
+
+// using the .setAttribute method to change the src, style, or class of an element
+
+
+var site1El = document.querySelector(".site1");
+var site2El = document.querySelector(".site2");
+var site3El = document.querySelector(".site3");
+var headerEl = document.querySelectorAll("h4");
+var title = document.querySelector("h1");
+
+site3El.children[0].textContent = "Site 3";
+site3El.children[1].setAttribute("href", "https://instagram.com");
+site3El.children[1].children[0].setAttribute("src", "assets/images/image_3.jpg");
+site3El.children[1].children[0].setAttribute("alt", "women working");
+site3El.children[1].children[0].setAttribute("style", "padding:10px;");
