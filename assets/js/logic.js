@@ -17,21 +17,21 @@ var myQuestions = [{
     
 },
 {
-    question: "What is a Coolean?",
+    question: "What does Javascript do?",
     choices: [
-        "A binary that indicates either true or false",
-        "A man's name",
-        "Halloween decoration"],
-    correctAnswer: "A binary that indicates either true or false"
+        "A powerful insect repellant",
+        "Provides instructions on how to make a good cup of coffee",
+        "Allows us to give interactivity to our webpages"],
+    correctAnswer: "Allows us to give interactivity to our webpages"
     
 },
 {
-    question: "What is a noolean?",
+    question: "What does CSS do?",
     choices: [
-        "A binary that indicates either true or false",
-        "A man's name",
-        "Halloween decoration"],
-    correctAnswer: "A binary that indicates either true or false"
+        "Provides us with very uninspired mutliple-choice questions",
+        "Dictates the style and layout of our webpages",
+        "Determines the length of a project"],
+    correctAnswer: "Dictates the style and layout of our webpages"
     
 }
 ];
@@ -75,7 +75,7 @@ function displayQuestion() {
     var question = document.querySelector("#question-title");
     question.textContent = myQuestions[currentQuestion].question;
 
-    var answerUl = document.createElement("ol");
+    var answerUl = document.createElement("ul");
 
     var choices = myQuestions[currentQuestion].choices;
     for(var i = 0; i < choices.length; i++) {
@@ -89,7 +89,7 @@ function displayQuestion() {
 }
 
 document.querySelector("#choices").addEventListener("click", function(event) {
-    if (event.target.tagName === "li") {
+    if (event.target.tagName === "LI") {
         var selectedChoice = event.target;
         var correctAnswer = myQuestions[currentQuestion - 1].correctAnswer;
         if (selectedChoice.textContent != correctAnswer) {
@@ -102,7 +102,7 @@ document.querySelector("#choices").addEventListener("click", function(event) {
 });
 
 function clearChoices() {
-    var answerUl = document.querySelector("ol");
+    var answerUl = document.querySelector("ul");
     var choices = document.querySelectorAll("#choices li");
     for (var i = 0; i < choices.length; i++) {
         choices[i].remove();
