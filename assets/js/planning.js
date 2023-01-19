@@ -18,10 +18,17 @@ var myQuestions = [{
         "A data type",
         "A true or false input",
         "An instruction to the console"
-        ]
+        ],
+    correctAnswer: "A data type"
 },
 {
-    question: "...", etc.
+    question: "What is a boolean",
+    answers: [
+        "A binary that indicates either true or false",
+        "A man's name",
+        "Haloween decoration",
+    correctAnswer: "A binary that indicates either true or false"
+    ]
 }
 ]
 
@@ -100,7 +107,7 @@ function endGame() {
     localStorage.setItem("score", score);
 }
 
-// This can then be  saved and displayed whenever later.
+// This can then be saved and displayed whenever later.
 
 
 
