@@ -54,10 +54,7 @@ var myQuestions = [{
 }
 ];
 
-
-
 var timerEl = document.querySelector("#time");
-
 var timeLeft = 60;
 var score = 0;
 var currentQuestion = 0;
@@ -80,7 +77,7 @@ function startTimer() {
     if(timeLeft > 1 && currentQuestion !== myQuestions.length) {
     timerEl.textContent = timeLeft + " seconds remaining";
     timeLeft --; 
-    } else if(timeLeft === 1){
+    } else if(timeLeft === 1 && currentQuestion !== myQuestions.length){
     timerEl.textContent = timeLeft + " second remaining";
     timeLeft --;
     } else {
@@ -89,6 +86,7 @@ function startTimer() {
     endGame();
     }}, 1000);
 }
+
 
 function displayQuestion() {
     var question = document.querySelector("#question-title");
@@ -101,29 +99,26 @@ function displayQuestion() {
         var choice = document.createElement("li");
         choice.textContent = choices[i];
         answerUl.appendChild(choice);
-        
     }
     document.querySelector("#choices").appendChild(answerUl);
 
-    if(currentQuestion === myQuestions.length -1) {
+    if(currentQuestion > myQuestions.length) {
     endGame();
     } else {
-        currentQuestion++;
+    currentQuestion++;
     }
-    
 }
 
 document.querySelector("#choices").addEventListener("click", function(event) {
     if (event.target.tagName === "LI") {
         var selectedChoice = event.target;
         var correctAnswer = myQuestions[currentQuestion - 1].correctAnswer;
-        if (selectedChoice.textContent != correctAnswer) {
+    if (selectedChoice.textContent != correctAnswer) {
             timeLeft -= 10;
         }
     clearChoices();
     displayQuestion();
-    }
-    
+    }   
 });
 
 function clearChoices() {
@@ -131,19 +126,15 @@ function clearChoices() {
     var choices = document.querySelectorAll("#choices li");
     for (var i = 0; i < choices.length; i++) {
         choices[i].remove();
-        answerUl.remove();
-        
+        answerUl.remove();        
     }
 }
 
 function endGame(){
-    clearChoices();
     questionScreen.setAttribute("class", "hide");
     endScreen.setAttribute("class", "start");
+    score = timeLeft;
+    console.log(score);
 }
 
-// if (currentQuestion < myQuestions.length - 1) {
-//     currentQuestion++;
-//     displayQuestion();
-// endGame();
-// }
+
