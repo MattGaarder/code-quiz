@@ -33,6 +33,24 @@ var myQuestions = [{
         "Determines the length of a project"],
     correctAnswer: "Dictates the style and layout of our webpages"
     
+},
+{
+    question: "What is a boolean?",
+    choices: [
+        "A binary that indicates either true or false",
+        "A man's name",
+        "Halloween decoration"],
+    correctAnswer: "A binary that indicates either true or false"
+    
+},
+{
+    question: "What does Javascript do?",
+    choices: [
+        "A powerful insect repellant",
+        "Provides instructions on how to make a good cup of coffee",
+        "Allows us to give interactivity to our webpages"],
+    correctAnswer: "Allows us to give interactivity to our webpages"
+    
 }
 ];
 
@@ -44,13 +62,14 @@ var timeLeft = 60;
 var score = 0;
 var currentQuestion = 0;
 var startButton = document.querySelector("#start");
+var questionScreen = document.querySelector("#questions");
+var startScreen = document.querySelector("#start-screen");
+var endScreen = document.querySelector("#end-screen");
 
 startButton.addEventListener("click", startGame);
 
 function startGame() {
-    var startScreen = document.querySelector("#start-screen");
     startScreen.setAttribute("class", "hide");
-    var questionScreen = document.querySelector("#questions");
     questionScreen.setAttribute("class", "start");
     startTimer();
     displayQuestion();
@@ -58,17 +77,17 @@ function startGame() {
 
 function startTimer() {
     var timeInterval = setInterval(function() {
-    if(timeLeft > 1) {
+    if(timeLeft > 1 && currentQuestion !== myQuestions.length) {
     timerEl.textContent = timeLeft + " seconds remaining";
     timeLeft --; 
     } else if(timeLeft === 1){
     timerEl.textContent = timeLeft + " second remaining";
-    // timeLeft --;
+    timeLeft --;
     } else {
     timerEl.textContent = '';
     clearInterval(timeInterval);
+    endGame();
     }}, 1000);
-    // endGame();
 }
 
 function displayQuestion() {
@@ -84,8 +103,14 @@ function displayQuestion() {
         answerUl.appendChild(choice);
         
     }
-    currentQuestion++;
     document.querySelector("#choices").appendChild(answerUl);
+
+    if(currentQuestion === myQuestions.length -1) {
+    endGame();
+    } else {
+        currentQuestion++;
+    }
+    
 }
 
 document.querySelector("#choices").addEventListener("click", function(event) {
@@ -95,10 +120,10 @@ document.querySelector("#choices").addEventListener("click", function(event) {
         if (selectedChoice.textContent != correctAnswer) {
             timeLeft -= 10;
         }
-        // other code to move on to the next question or end the game
-    }
     clearChoices();
     displayQuestion();
+    }
+    
 });
 
 function clearChoices() {
@@ -107,10 +132,15 @@ function clearChoices() {
     for (var i = 0; i < choices.length; i++) {
         choices[i].remove();
         answerUl.remove();
-
+        
     }
 }
 
+function endGame(){
+    clearChoices();
+    questionScreen.setAttribute("class", "hide");
+    endScreen.setAttribute("class", "start");
+}
 
 // if (currentQuestion < myQuestions.length - 1) {
 //     currentQuestion++;
