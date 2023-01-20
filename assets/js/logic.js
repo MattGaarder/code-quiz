@@ -81,7 +81,7 @@ function startTimer() {
     timerEl.textContent = timeLeft + " second remaining";
     timeLeft --;
     } else {
-    timerEl.textContent = '';
+    timerEl.textContent = "";
     clearInterval(timeInterval);
     endGame();
     }}, 1000);
@@ -140,25 +140,28 @@ function endGame(){
 }
 
 document.querySelector("#submit").addEventListener("click", function(event) {
-    var initials = document.querySelector("#initials").value;
-    localStorage.setItem("score", score);
-    localStorage.setItem("initials", initials);
+    // var initials = document.querySelector("#initials").value;
+    // localStorage.setItem("savedScore", score);
+    // localStorage.setItem("savedInitials", initials);
+    var forHighscore = {
+        savedScore: score,
+        savedInitials: document.querySelector("#initials").value 
+    };
+    localStorage.setItem("savedHighscore", JSON.stringify(forHighscore));
+    console.log(forHighscore);
     window.location.href = 'highscores.html';
-    var highScores = document.querySelector("#highscores")
-    var savedScore = localStorage.getItem("score");
-    highScores.appendChild(savedScore);
 });
 
 
 
 
-{/* <body>
+/* <body>
 <div class="wrapper">
   <h1>Highscores</h1>
   <ol id="highscores"></ol>
 
   <a href="index.html"><button>Go Back</button></a>
   <button id="clear">Clear Highscores</button>
-</div> */}
+</div> */
 
 

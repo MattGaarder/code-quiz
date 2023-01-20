@@ -106,3 +106,8 @@ getting elements from HTML by ID (we can also use querySelector and innerHTML):
 var articlesDiv = document.getElementById('articles');
 
 articlesDiv.children[0].children[1].style.fontSize = "50px";
+
+
+The code you've provided is overwriting the previous highscore and initials because you are always saving the new score and initials to the same key in local storage "savedScore" and "savedInitials" respectively.
+
+Another approach you can use, is to store the highscores in an array and then use the JSON.stringify method to convert the array to a string and save it to local storage. Then when you want to retrieve the highscores you can use the JSON.parse method to convert the string back to an array.
