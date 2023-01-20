@@ -133,8 +133,32 @@ function clearChoices() {
 function endGame(){
     questionScreen.setAttribute("class", "hide");
     endScreen.setAttribute("class", "start");
+    var finalScore = document.querySelector("#final-score")
     score = timeLeft;
-    console.log(score);
+    finalScore.textContent = score;
+    return score;
 }
+
+document.querySelector("#submit").addEventListener("click", function(event) {
+    var initials = document.querySelector("#initials").value;
+    localStorage.setItem("score", score);
+    localStorage.setItem("initials", initials);
+    window.location.href = 'highscores.html';
+    var highScores = document.querySelector("#highscores")
+    var savedScore = localStorage.getItem("score");
+    highScores.appendChild(savedScore);
+});
+
+
+
+
+{/* <body>
+<div class="wrapper">
+  <h1>Highscores</h1>
+  <ol id="highscores"></ol>
+
+  <a href="index.html"><button>Go Back</button></a>
+  <button id="clear">Clear Highscores</button>
+</div> */}
 
 
