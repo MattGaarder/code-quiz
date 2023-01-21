@@ -11,19 +11,28 @@
 
 function displayHighscores() {
     var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    highscores.sort(function(a, b){
+        return b.savedScore - a.savedScore
+    });
     console.log(highscores);
     var highscoresList = document.querySelector("#highscores");
     for (var i = 0; i < highscores.length; i++) {
         var scoreLi = document.createElement("li");
         var score = highscores[i];
-        scoreLi.textContent = score.savedInitials + " " + score.savedScore;
+        scoreLi.textContent = score.savedScore + " " + score.savedInitials;
         highscoresList.appendChild(scoreLi);
     }
 }
 
 displayHighscores();
 
-
+document.querySelector("#clear").addEventListener("click", function(event){
+    var scoreLi = document.querySelectorAll("li");
+    for (var i = 0; i < scoreLi.length; i++) {
+        scoreLi[i].remove();       
+    }
+    localStorage.removeItem("highscores");
+});
 
 // var choices = myQuestions[currentQuestion].choices;
 // for(var i = 0; i < choices.length; i++) {
