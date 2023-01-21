@@ -1,12 +1,7 @@
 
 
 
-// document.querySelector("#submit").addEventListener("click", function(event) {
-//     var initials = document.querySelector("#initials").value;
-//     localStorage.setItem("savedScore", score);
-//     localStorage.setItem("savedInitials", initials);
-//     window.location.href = 'highscores.html';
-// });
+
 
 
 function displayHighscores() {
@@ -14,7 +9,6 @@ function displayHighscores() {
     highscores.sort(function(a, b){
         return b.savedScore - a.savedScore
     });
-    console.log(highscores);
     var highscoresList = document.querySelector("#highscores");
     for (var i = 0; i < highscores.length; i++) {
         var scoreLi = document.createElement("li");
@@ -33,6 +27,27 @@ document.querySelector("#clear").addEventListener("click", function(event){
     }
     localStorage.removeItem("highscores");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// document.querySelector("#submit").addEventListener("click", function(event) {
+//     var initials = document.querySelector("#initials").value;
+//     localStorage.setItem("savedScore", score);
+//     localStorage.setItem("savedInitials", initials);
+//     window.location.href = 'highscores.html';
+// });
 
 // var choices = myQuestions[currentQuestion].choices;
 // for(var i = 0; i < choices.length; i++) {
