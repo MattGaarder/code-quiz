@@ -1,113 +1,18 @@
 # coding-quiz
-a timed coding quiz with multiple-choice questions.
+A timed coding quiz with multiple-choice questions.
+
+This quiz uses .querySelector to dynamically generate choices and question for my code-quiz on the HTML page. 
+It does so by traversing the DOM to the appropriate properties in my questions array of objects to display 
+the appropriate questions and answer options. It also uses .setAttribute to dynamically change the classes of 
+my elements to have certain portions of my page appear hidden or shown, with event listeners that react to 
+inputs from the user (clicks, input .values etc). It also uses JSON.stringify and parse to store the score and
+initials from the user to be displayed in a .sort(ed) highscore list, that is stored in local storage and 
+persisted over closing or refreshing the browser. 
+
+https://github.com/MattGaarder/code-quiz
+https://mattgaarder.github.io/code-quiz/
 
 
-
-
-
-
-
-
-
-Pre-planning for the code:
-
-// Define our start button in our javascript in order to give it functionality
-
-var startButton = document.querySelector(".start");
-
-// Attach event listener to start button to call startGame function on click
-
-startButton.addEventListener("click", startGame);
-
-// The startGame function will change the class attribute in our code so that #start-screen div's class will change from .start to .hide
-// Instead of parsing a startGame function like above, alternatively I could use an anonymous function that will do what is needed
-
-startButton.addEventListener("click", function(event) {
-  var toggle = "start";
-
-  if(toggle === "start"){
-    var toggle = element.getAttribute(".start");
-
-    if(state === ".start") {
-      element.dataset.state = "number";
-      element.textContent = element.dataset.number;
-    } else {
-      element.dataset.state = "hidden";
-      element.textContent = "";
-    }
-  }
-});
-
-
-
-
-
-
-Implement a button that triggers a function that starts the quiz and starts the timer.
-
-If a question is answered incorrectly this subtracts additional time from the timer. 
-
-When the timer ends, or all questions have been answered, the game ends. 
-
-The players score is the amount of time remaining on the clock.
-
-The game ending changes the page where the user can save their inititals and highscore using local storage. 
-
-
-General structure of what a question and the multiple choice answers might look like and array of objects, each object containing a seperate array of potential answers: 
-
-var myQuestions = [{
-        question: "What is a string?",
-        answers: [
-            "A data type",
-            "A true or false input",
-            "An instruction to the console"
-            ]
-    },
-    {
-        question: "...", etc.
-    }
-]
-
-To then access questions or answers based on this I will need to traverse the DOM to get to certain values. e.g: 
-
-for(var i = 0; i < myQuestions.length; i++) {
-    console.log(myQuestions[i].questions);
-}
-
-
-
-Highscores will function as the user save their initials into the text input area, and this will then be appended as a child to the ordered list element in the HTML.
-
-We will need to write to local storage in our logic page, and read from our local storage in our highscores page. 
-
-In order to change the location of our page (i.e. switching from the game page to the highscores page with a click event) I can use the following code (found in 08-Stu-Bubbling): 
-
-carousel.addEventListener("click", function(){
-    window.location.href = images[index] (or a URL or whatever);
-});
-
-
-
-
-Summary of the Week:
-
-Traversing the DOM
-Manipulating the DOM (by setting attributes)
-Dynamically Adding things to the DOM (appending children)
-Timers 
-Event listeners
-Preventing default/stopping propogation
-Data attributes
-Local storage (and storing objects using JSON.stringify and parse())
-
-getting elements from HTML by ID (we can also use querySelector and innerHTML):
-
-var articlesDiv = document.getElementById('articles');
-
-articlesDiv.children[0].children[1].style.fontSize = "50px";
-
-
-The code you've provided is overwriting the previous highscore and initials because you are always saving the new score and initials to the same key in local storage "savedScore" and "savedInitials" respectively.
-
-Another approach you can use, is to store the highscores in an array and then use the JSON.stringify method to convert the array to a string and save it to local storage. Then when you want to retrieve the highscores you can use the JSON.parse method to convert the string back to an array.
+[label](../../Screenshot%202023-01-21%20at%2015.24.43.png%0D) 
+[label](../../Screenshot%202023-01-21%20at%2015.25.02.png%0D) !
+[Alt text](../../Screenshot%202023-01-21%20at%2015.25.18.png)
