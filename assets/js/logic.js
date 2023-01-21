@@ -1,7 +1,7 @@
-var timerEl = document.querySelector("#time");
 var timeLeft = 60;
 var score = 0;
 var currentQuestion = 0;
+var timerEl = document.querySelector("#time");
 var startButton = document.querySelector("#start");
 var questionScreen = document.querySelector("#questions");
 var startScreen = document.querySelector("#start-screen");
@@ -39,13 +39,14 @@ function displayQuestion() {
 
     var choices = myQuestions[currentQuestion].choices;
     for(var i = 0; i < choices.length; i++) {
-        var choice = document.createElement("li");
+        var choice = document.createElement("button");
         choice.textContent = choices[i];
         answerUl.appendChild(choice);
     }
+
     document.querySelector("#choices").appendChild(answerUl);
 
-    if(currentQuestion > myQuestions.length) {
+    if(currentQuestion === myQuestions.length) {
     endGame();
     } else {
     currentQuestion++;
@@ -53,7 +54,7 @@ function displayQuestion() {
 }
 
 document.querySelector("#choices").addEventListener("click", function(event) {
-    if (event.target.tagName === "LI") {
+    if (event.target.tagName === "BUTTON") {
         var selectedChoice = event.target;
         var correctAnswer = myQuestions[currentQuestion - 1].correctAnswer;
     if (selectedChoice.textContent != correctAnswer) {
@@ -66,7 +67,7 @@ document.querySelector("#choices").addEventListener("click", function(event) {
 
 function clearChoices() {
     var answerUl = document.querySelector("ul");
-    var choices = document.querySelectorAll("#choices li");
+    var choices = document.querySelectorAll("#choices button");
     for (var i = 0; i < choices.length; i++) {
         choices[i].remove();
         answerUl.remove();        
@@ -86,17 +87,19 @@ document.querySelector("#submit").addEventListener("click", function(event) {
     // var initials = document.querySelector("#initials").value;
     // localStorage.setItem("savedScore", score);
     // localStorage.setItem("savedInitials", initials);
-    var highscoreArray = [];
-    var forHighscore = {
+    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    var highscoreObject = {
         savedScore: score,
         savedInitials: document.querySelector("#initials").value 
     };
-    localStorage.setItem("savedHighscore", JSON.stringify(forHighscore));
-    highscoreArray.push(forHighscore);
-    
-    console.log(forHighscore);
+    highscores.push(highscoreObject);
+    localStorage.setItem("highscores", JSON.stringify(highscores));
     window.location.href = 'highscores.html';
+    displayHighscores();
+    console.log(highscores);
 });
+
+    
 
 
 

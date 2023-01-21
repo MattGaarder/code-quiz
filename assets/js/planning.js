@@ -207,3 +207,23 @@ site3El.children[1].setAttribute("href", "https://instagram.com");
 site3El.children[1].children[0].setAttribute("src", "assets/images/image_3.jpg");
 site3El.children[1].children[0].setAttribute("alt", "women working");
 site3El.children[1].children[0].setAttribute("style", "padding:10px;");
+
+
+
+
+
+document.querySelector("#submit").addEventListener("click", function(event) {
+    // var initials = document.querySelector("#initials").value;
+    // localStorage.setItem("savedScore", score);
+    // localStorage.setItem("savedInitials", initials);
+    var highscores = JSON.parse(localStorage.getitem("highscores")) || [];
+    var highscoreObject = {
+        savedScore: score,
+        savedInitials: document.querySelector("#initials").value 
+    };
+    // Ask Sean what is wrong with this code:
+    highscores.push(localStorage.setItem("highscoresStringify", JSON.stringify(highscoreObject)));
+    window.location.href = 'highscores.html';
+    console.log(highscores);
+    // console.log(highscoreArray);
+});

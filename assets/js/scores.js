@@ -9,14 +9,36 @@
 // });
 
 
+function displayHighscores() {
+    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    console.log(highscores);
+    var highscoresList = document.querySelector("#highscores");
+    for (var i = 0; i < highscores.length; i++) {
+        var scoreLi = document.createElement("li");
+        var score = highscores[i];
+        scoreLi.textContent = score.savedInitials + " " + score.savedScore;
+        highscoresList.appendChild(scoreLi);
+    }
+}
 
-var highscoreObject = localStorage.getItem("forHighscore");
-console.log(highscoreObject);
-var highScoresArray = [];
+displayHighscores();
 
-var highScores = document.querySelector("#highscores");
-var savedScore = localStorage.getItem("savedScore");
-var savedInitials = localStorage.getItem("savedInitials");
+
+
+// var choices = myQuestions[currentQuestion].choices;
+// for(var i = 0; i < choices.length; i++) {
+//     var choice = document.createElement("button");
+//     choice.textContent = choices[i];
+//     answerUl.appendChild(choice);
+// }
+
+// var highscoreObject = localStorage.getItem("forHighscore");
+// console.log(highscoreObject);
+// var highScoresArray = [];
+
+// var highScores = document.querySelector("#highscores");
+// var savedScore = localStorage.getItem("savedScore");
+// var savedInitials = localStorage.getItem("savedInitials");
 
 // if(savedInitials && savedScore){
 //     highScoresArray.push({
