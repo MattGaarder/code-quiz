@@ -46,7 +46,7 @@ function startTimer() {
     } else {
 
 // Otherwise, I've set the text content of the timer element to an empty string- I've also removed the timer element
-// completely which is a little superfluous. It will also call the clearInterval function, stopping the timer (as defined
+// completely which is a little superfluous. QUESTION. It will also call the clearInterval function, stopping the timer (as defined
 // in the timeInterval variable). Also calls the end game function
 
     timerEl.textContent = "";
@@ -126,17 +126,17 @@ document.querySelector("#choices").addEventListener("click", function(event)
     if (event.target.tagName === "BUTTON") {
         var selectedChoice = event.target;
 
-// I have a correct answer key in my key value pairs in my objects. I minus one from my currentQuestion iterator because 
+// I have a correct answer key in my key value pairs in my objects. QUESTION. I minus one from my currentQuestion iterator because 
 // I iterated plus one above so I need to correct for that.
 
         var correctAnswer = myQuestions[currentQuestion - 1].correctAnswer;
-            // feedback.textContent = "Correct";
+            // feedback.textContent = "Correct"; QUESTION.
 
 // If what the user clicked on is not equal to the correct answer, minus 10 from timeLeft 
 
     if (selectedChoice.textContent != correctAnswer) {
             timeLeft -= 10;
-            // feedback.textContent = "Incorrect";
+            // feedback.textContent = "Incorrect"; QUESTION. !=
         }
 
 // After each click, clear the choices and display the next question (iterate current question)        
@@ -155,7 +155,7 @@ function clearChoices() {
 
     var choices = document.querySelectorAll("#choices button");
 
-// Because I used querySelectorAll, choices isn't a variable, but a node variable, or something like that
+// Because I used querySelectorAll, choices isn't a variable, but a node array variable, or something like that
 // basically there is more than one, so like above I need to iterate through them and use the .remove method, to remove them
 
     for (var i = 0; i < choices.length; i++) {
@@ -232,3 +232,111 @@ document.querySelector("#submit").addEventListener("click", function(event) {
 </div> */
 
 
+
+
+
+
+
+
+
+
+
+// For easy reading: All in a chunk
+/*
+
+var timeLeft = 60;
+var score = 0;
+var currentQuestion = 0;
+var timerEl = document.querySelector("#time");
+var startButton = document.querySelector("#start");
+var questionScreen = document.querySelector("#questions");
+var feedback = document.querySelector("#feedback");
+var startScreen = document.querySelector("#start-screen");
+var endScreen = document.querySelector("#end-screen");
+var question = document.querySelector("#question-title");
+
+startButton.addEventListener("click", startGame);
+
+function startGame() {
+    startScreen.setAttribute("class", "hide");
+    questionScreen.setAttribute("class", "start");
+    feedback.setAttribute("class", "start");
+    startTimer();
+    displayQuestion();
+}
+
+function startTimer() {
+    var timeInterval = setInterval(function() {
+    if(timeLeft > 1 && currentQuestion !== myQuestions.length) {
+        timerEl.textContent = timeLeft;
+        timeLeft --; 
+    } else {
+        timerEl.textContent = "";
+        timerEl.remove();
+        clearInterval(timeInterval);
+        endGame();
+        }}, 1000);
+}
+
+function displayQuestion() {
+    question.textContent = myQuestions[currentQuestion].question;
+    var answerUl = document.createElement("ul");
+    var choices = myQuestions[currentQuestion].choices;
+    for(var i = 0; i < choices.length; i++) {
+        var choice = document.createElement("button");
+        choice.textContent = choices[i];
+        answerUl.appendChild(choice);
+    }
+    document.querySelector("#choices").appendChild(answerUl);
+    if(currentQuestion === myQuestions.length) {
+    endGame();
+    } else {
+    currentQuestion++;
+    }
+}
+
+document.querySelector("#choices").addEventListener("click", function(event) {
+    if (event.target.tagName === "BUTTON") {
+    var selectedChoice = event.target;
+    var correctAnswer = myQuestions[currentQuestion - 1].correctAnswer;
+            // feedback.textContent = "Correct"; QUESTION.
+    if (selectedChoice.textContent != correctAnswer) {
+    timeLeft -= 10;
+            // feedback.textContent = "Incorrect"; QUESTION. !=
+    }
+    clearChoices();
+    displayQuestion();
+    }   
+});
+
+function clearChoices() {
+    var answerUl = document.querySelector("ul");
+    var choices = document.querySelectorAll("#choices button");
+    for (var i = 0; i < choices.length; i++) {
+        choices[i].remove();
+        answerUl.remove();     
+    }
+}
+
+function endGame(){
+    questionScreen.setAttribute("class", "hide");
+    endScreen.setAttribute("class", "start");
+    var finalScore = document.querySelector("#final-score")
+    score = timeLeft;
+    finalScore.textContent = score;
+    return score;
+}
+
+document.querySelector("#submit").addEventListener("click", function(event) {
+    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    var highscoreObject = {
+        savedScore: score,
+        savedInitials: document.querySelector("#initials").value 
+    };
+    highscores.push(highscoreObject);
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+    window.location.href = 'highscores.html';
+    displayHighscores();
+});
+
+*/

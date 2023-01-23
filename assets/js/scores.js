@@ -8,6 +8,7 @@ function displayHighscores() {
     var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
     highscores.sort(function(a, b){
         return b.savedScore - a.savedScore
+// Get clarification about how this works
     });
     var highscoresList = document.querySelector("#highscores");
     for (var i = 0; i < highscores.length; i++) {
@@ -29,7 +30,16 @@ document.querySelector("#clear").addEventListener("click", function(event){
 });
 
 
+// 1. You should create a variable inside the event listener that uses JSON.parse and localStorage.getItem to get 
+// the saved item from local storage using the "savedHighScore" key
+// --or that just stores an empty array to the variable if there is no local storage item.
+// 2. You're right on track with creating an object and storing the score and intials as properties of the object.
+// 3. Then you should use the .push to add forHighscore to the array you created before
+// 4. Then use localStorage.setItem just like you did, but set the array that you pushed your object into as the item to set--instead of the forHighscore object.
 
+// And with the other page, the issue you're having there is that you no longer have access to the forHighscore object because you're working 
+// with another file, so you would have to get the array from localStorage just like you did at the beginning of the addEventListener, and then 
+// you would probably loop through that array and at each object you would get the initials and score and create elements and append them to the elements on the page for them.
 
 
 
@@ -79,13 +89,3 @@ document.querySelector("#clear").addEventListener("click", function(event){
 
 
 
-// 1. You should create a variable inside the event listener that uses JSON.parse and localStorage.getItem to get 
-// the saved item from local storage using the "savedHighScore" key
-// --or that just stores an empty array to the variable if there is no local storage item.
-// 2. You're right on track with creating an object and storing the score and intials as properties of the object.
-// 3. Then you should use the .push to add forHighscore to the array you created before
-// 4. Then use localStorage.setItem just like you did, but set the array that you pushed your object into as the item to set--instead of the forHighscore object.
-
-// And with the other page, the issue you're having there is that you no longer have access to the forHighscore object because you're working 
-// with another file, so you would have to get the array from localStorage just like you did at the beginning of the addEventListener, and then 
-// you would probably loop through that array and at each object you would get the initials and score and create elements and append them to the elements on the page for them.
