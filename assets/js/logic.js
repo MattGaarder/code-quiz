@@ -1,3 +1,5 @@
+// There is easy-reading below (the code without comments)
+
 // Initialise (most of) the variables that I will use in the following code. This is done using the
 // document.querySelector, which will look through the DOM to find elements, or IDs or classes etc.
 
