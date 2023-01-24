@@ -12,7 +12,6 @@ persisted over closing or refreshing the browser.
 https://github.com/MattGaarder/code-quiz
 https://mattgaarder.github.io/code-quiz/
 
-
-[label](../../Screenshot%202023-01-21%20at%2015.24.43.png%0D) 
-[label](../../Screenshot%202023-01-21%20at%2015.25.02.png%0D) !
-[Alt text](../../Screenshot%202023-01-21%20at%2015.25.18.png)
+![Alt text](assets/images/Screenshot%202023-01-21%20at%2015.24.43.png)
+![Alt text](assets/images/Screenshot%202023-01-21%20at%2015.25.02.png)
+![Alt text](assets/images/Screenshot%202023-01-21%20at%2015.25.18.png)
